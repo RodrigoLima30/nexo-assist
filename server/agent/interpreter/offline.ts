@@ -17,7 +17,7 @@ const has = (text: string, re: RegExp) => re.test(text);
 
 const RE = {
   ticketRef: /\b(INC|REQ)[\s-]?(\d{5})\b/i,
-  greeting: /^(oi+|ola|bom dia|boa tarde|boa noite|e ai|hello|hey)\b[\s!,.]*([a-z]+[\s!,.]*)?$/,
+  greeting: /^((oi+|ola|bom dia|boa tarde|boa noite|e ai|hello|hey)\b[\s!,.]*)+([a-z]+[\s!,.]*)?$/,
   thanks: /\b(obrigad[oa]|valeu|agradeco|funcionou|deu certo|resolveu|era isso|perfeito)\b/,
   human: /\b(analista|atendente|humano|uma pessoa|alguem de verdade|falar com (alguem|uma pessoa)|suporte humano|transfer)/,
   status:
@@ -176,7 +176,8 @@ export function interpretOffline(ctx: InterpreterContext): Interpretation {
     return { ...out, intent: 'talk_to_human', confidence: 0.92, understood: 'Você quer falar com um analista.', reasoning: 'A mensagem pede um atendente humano.' };
   }
   const area = has(t, RE.outRh) ? 'RH' : has(t, RE.outFin) ? 'Financeiro' : has(t, RE.outFac) ? 'Facilities' : null;
-  if (area && !has(t, RE.problem)) {
+  // "Não consigo acessar o holerite no portal" é TI (acesso); "meu reembolso não caiu" não é.
+  if (area && (!has(t, RE.problem) || !out.category)) {
     return {
       ...out,
       intent: 'out_of_scope',

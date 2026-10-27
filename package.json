@@ -9,8 +9,8 @@
   },
   "scripts": {
     "dev": "concurrently -k -n tickets,api,web -c yellow,cyan,magenta \"npm:dev:tickets\" \"npm:dev:api\" \"npm:dev:web\"",
-    "dev:tickets": "tsx watch --clear-screen=false server/tickets-service/main.ts",
-    "dev:api": "tsx watch --clear-screen=false server/app/main.ts",
+    "dev:tickets": "node --watch-path=server --watch-path=shared --import tsx server/tickets-service/main.ts",
+    "dev:api": "node --watch-path=server --watch-path=shared --import tsx server/app/main.ts",
     "dev:web": "vite",
     "build": "vite build",
     "start": "concurrently -k -n tickets,api -c yellow,cyan \"tsx server/tickets-service/main.ts\" \"tsx server/app/main.ts\"",

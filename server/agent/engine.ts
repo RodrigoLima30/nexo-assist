@@ -717,7 +717,7 @@ class TurnRun {
             true,
           );
         }
-        const subject = s.category ? s.category.toLowerCase() : 'esse assunto';
+        const subject = s.category && s.category !== 'Outros' ? s.category : 'esse assunto';
         preface.push(`Não há chamado aberto sobre ${subject}`);
       }
     }
@@ -848,6 +848,7 @@ class TurnRun {
       });
       this.rules.add(decision.rule);
       const due = computeDueAt(decision.priority, this.now);
+      this.reasoning = `${this.reasoning} Já tenho todos os dados obrigatórios; prioridade ${PRIORITY_LABEL[decision.priority].toLowerCase()} porque ${decision.reason} (prazo de ${SLA_RULES[decision.priority].label}). Mostro o rascunho e só crio depois da confirmação.`.trim();
       this.tracer.note('consultou o SLA', 'rules.sla', `${SLA_RULES[decision.priority].label} → resposta até ${formatDue(due.toISOString(), this.now)}`, {
         output: { dueAt: due.toISOString() },
       });
