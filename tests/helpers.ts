@@ -17,7 +17,7 @@ export function makeTicketsStack(opts: { failureRate?: number; random?: () => nu
   const client = new TicketsClient({
     baseUrl: 'http://tickets.test',
     token: TOKEN,
-    fetch: (input, init) => app.fetch(new Request(input as string, init)),
+    fetch: async (input, init) => app.fetch(new Request(input as string, init)),
     sleep: async () => {},
   });
   return { repo, app, client };

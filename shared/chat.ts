@@ -14,6 +14,8 @@ export type ClientAction =
   | { type: 'decline' }
   | { type: 'article_resolved' }
   | { type: 'article_not_resolved' }
+  /** Abrir um chamado novo mesmo havendo um parecido (o funcionário diz que é outro problema). */
+  | { type: 'open_new' }
   | { type: 'confirm_draft'; draftId: string; edits?: DraftEdits }
   | { type: 'cancel_draft'; draftId: string }
   | { type: 'start'; topic: 'problem' | 'status' | 'question' };
@@ -123,6 +125,11 @@ export interface TraceStep {
   status: TraceStepStatus;
   detail: string | null;
   durationMs: number;
+  /**
+   * Passos de contexto (carregar chamados, buscar artigos, interpretar) aparecem sempre
+   * no detalhe, mas só vão para a linha de status quando a decisão realmente os usou.
+   */
+  visible: boolean;
   input?: unknown;
   output?: unknown;
 }
