@@ -29,7 +29,7 @@ Abra **http://localhost:5173**. O login aceita **qualquer senha** para as contas
 Outros comandos:
 
 ```bash
-npm test            # 48 testes: regras, serviço de chamados, cenários do agent e API
+npm test            # 49 testes: regras, serviço de chamados, cenários do agent e API
 npm run typecheck   # tsc --noEmit (strict + noUncheckedIndexedAccess)
 npm run eval        # avaliação rotulada do interpretador (usa o LLM se houver chave)
 npm run reset       # apaga os bancos locais (pare os servidores antes); o seed recria tudo
@@ -123,7 +123,7 @@ O analista vê a mesma trilha no console, além do resumo da transferência.
 - **Regras como funções puras e testadas:** prioridade e SLA (horário útil, fim de semana, fora do expediente, plantão).
 - **Testes de cenário ponta a ponta** (`tests/agent-scenarios.test.ts`): o motor conversa com o **serviço de chamados real** (em memória, pelo contrato HTTP) e cobre a Tela 2 completa, caso crítico, artigo que se aplica e que não se aplica, cancelamento, duplicidade, reabertura, consulta com seleção, consulta pelo assunto sem número, vencido + transferência, **privacidade**, sistema legado fora do ar, complemento, dúvida, escopo e baixa confiança.
 - **Testes de API** (`tests/api.test.ts`): perfis, isolamento entre funcionários, streaming, pausa do agent com analista, assumir/responder/devolver/encerrar, trava entre dois analistas, **persistência após reinício** e limite de mensagens.
-- **Avaliação rotulada** (`npm run eval`): 22 frases com intenção e fatos esperados. Com chave, mede o LLM real. Ressalva honesta: as heurísticas offline foram ajustadas olhando esses mesmos casos, então os 100% do modo offline não medem generalização. O valor do eval está em comparar modelos e prompts no modo LLM.
+- **Avaliação rotulada** (`npm run eval`): 23 frases com intenção e fatos esperados. Com chave, mede o LLM real. Ressalva honesta: as heurísticas offline foram ajustadas olhando esses mesmos casos, então os 100% do modo offline não medem generalização. O valor do eval está em comparar modelos e prompts no modo LLM.
 - **Defesa em profundidade:** schema na saída do LLM, sanitização antes de usar, regras em código, confirmação humana antes de qualquer escrita.
 
 ---
