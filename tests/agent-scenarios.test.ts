@@ -121,6 +121,14 @@ describe('sem duplicidade', () => {
     expect(r2.trace.action.code).toBe('ticket_update');
   });
 
+  it('assunto novo depois de cancelar uma atualização ainda checa duplicidade', async () => {
+    const c = chat();
+    const r1 = await c.say('Meu notebook continua muito lento, agora trava ao abrir o Excel.');
+    await c.click('Cancelar', { type: 'cancel_draft', draftId: block(r1, 'draft').draft.id });
+    const r2 = await c.say('A senha do SAP está bloqueada de novo.');
+    expect(block(r2, 'draft').draft).toMatchObject({ mode: 'reopen', ticketId: 'INC-20150' });
+  });
+
   it('problema de um chamado resolvido há 4 dias propõe reabrir', async () => {
     const c = chat();
     const r = await c.say('A senha do SAP está bloqueada de novo.');

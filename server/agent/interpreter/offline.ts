@@ -37,7 +37,7 @@ const RE = {
   dontKnow: /\b(nao sei|sei la|nao tenho certeza)\b/,
   blocked: /\b(nao consigo trabalhar|parad[oa]|impedid[oa]|nada funciona|impede|travad[oa] (de|sem)|sem conseguir trabalhar)\b/,
   deadline:
-    /\b(reuniao|apresentacao|cliente|entrega|prazo|urgente|ainda hoje|para hoje|pra hoje|ate hoje|hoje (as|a tarde|de tarde|cedo)|daqui a pouco|as \d{1,2}(h|:\d{2}))/,
+    /\b(reuniao (com|as|hoje|daqui|agora|marcada)|tenho (uma )?reuniao|apresentacao|cliente|entrega|prazo|urgente|ainda hoje|para hoje|pra hoje|ate hoje|hoje (as|a tarde|de tarde|cedo)|daqui a pouco|as \d{1,2}(h|:\d{2}))/,
   workaround: /\b(consigo (trabalhar|usar|continuar)|da pra (usar|trabalhar)|tenho alternativa|uso o (celular|outro)|atrapalha|da para (usar|trabalhar)|contornar)\b/,
   noUrgency: /\b(sem urgencia|nao e urgente|pode esperar|sem pressa|quando der|tranquilo)\b/,
   yes: /^(sim|s|isso|pode|pode sim|claro|ok|confirmo|confirma|pode criar|pode abrir|manda|quero|por favor|beleza|positivo)\b/,

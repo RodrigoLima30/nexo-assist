@@ -17,7 +17,8 @@ interface Case {
   intent: Intent;
   category?: Category;
   impact?: Impact;
-  deadlineToday?: boolean;
+  /** null = a pessoa não falou de compromisso (ex.: "entro em reunião" não é prazo). */
+  deadlineToday?: boolean | null;
   related?: string;
   pending?: Pending;
 }
@@ -34,6 +35,7 @@ const CASES: Case[] = [
   { text: 'O Outlook não abre, dá erro de perfil', intent: 'report_issue', category: 'E-mail' },
   { text: 'A impressora do 3º andar não imprime nada', intent: 'report_issue', category: 'Hardware' },
   { text: 'A internet caiu para toda a equipe, ninguém consegue trabalhar', intent: 'report_issue', category: 'Rede e VPN', impact: 'company' },
+  { text: 'O Teams fecha sozinho quando entro em reunião, mas consigo usar pelo navegador', intent: 'report_issue', category: 'Software', deadlineToday: null },
   { text: 'Preciso de acesso ao Power BI do comercial', intent: 'request', category: 'Acesso' },
   { text: 'Gostaria de solicitar um mouse sem fio novo', intent: 'request', category: 'Hardware' },
   { text: 'Qual o status do meu chamado?', intent: 'ticket_status' },

@@ -233,6 +233,9 @@ class TurnRun {
         return this.addInfo(i.ticketRef, i.extraInfo);
       case 'report_issue':
       case 'request':
+        // Nenhuma pergunta pendente absorveu a mensagem: é um assunto novo. Começa do zero
+        // para não herdar categoria nem a checagem de duplicidade de um assunto anterior.
+        this.state.slots = emptySlots();
         return this.newIssue(i, text);
       case 'answer_pending':
         // Resposta sem pergunta pendente correspondente: tratamos como relato livre se houver slots.
