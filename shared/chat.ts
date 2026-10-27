@@ -262,6 +262,8 @@ export interface ConsoleConversationResponse {
   employee: Person;
   messages: ChatMessage[];
   tickets: TicketView[];
+  /** Preenchido quando o serviço de chamados não respondeu. */
+  ticketsError: string | null;
 }
 
 export interface ApiError {
